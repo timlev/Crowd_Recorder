@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>recorddot.png</file>
+    <file>cloudsound2.png</file>
+    <file>mic.png</file>
+    <file>sound.png</file>
+  </qresource>
+</RCC>
