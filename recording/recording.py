@@ -1,3 +1,4 @@
+
 from include.recording_ui import *
 
 import os
@@ -6,6 +7,7 @@ def plang():
     print str(ui.languagebox.currentText())
 
 def getbestratio(boxheight,boxwidth,picheight,picwidth):
+    print boxheight,boxwidth,picheight,picwidth
     height_ratio = float(boxheight) / float(picheight)
     width_ratio = float(boxwidth) / float(picwidth)
     picwidth *= min(width_ratio, height_ratio)
@@ -85,13 +87,16 @@ def nextpressed():
 def loadpicture(currentpath, picfile):
     global soundfile
     #picture
-    mypixmap = QtGui.QPixmap(os.path.join(currentpath,picfile))
+    print os.path.abspath(os.path.join(currentpath,picfile))
+    mypixmap = QtGui.QPixmap(os.path.abspath(os.path.join(currentpath,picfile)))
+    print mypixmap
     picheight = mypixmap.size().height()
     picwidth = mypixmap.size().width()
     HEIGHT = ui.label.size().height()
     WIDTH = ui.label.size().width()
     newheight, newwidth = getbestratio(HEIGHT, WIDTH, picheight, picwidth)
     ui.label.setPixmap(mypixmap.scaled(newheight, newwidth))
+    #ui.label.setPixmap(mypixmap)
     
     #text
     print display_word(picfile)
@@ -112,20 +117,34 @@ def loadpicture(currentpath, picfile):
 
 if __name__ == "__main__":
     import sys
+    print os.getcwd()
+    if os.path.dirname(sys.argv[0]) != "":
+        os.chdir(os.path.dirname(sys.argv[0]))
+    print os.getcwd()
+    print os.path.basename(os.getcwd())
+    print "*" * 10 + "Finished changing directory"
     lessonsroot = "Lessons"
     currentlesson = "Personal Questions"
     currentpath = os.path.join(lessonsroot, currentlesson)
+    print  "*" * 10 + "Finished setting currentpath"
     app = QtGui.QApplication(sys.argv)
+    print  "*" * 10 + "Started QApplication"
     MainWindow = QtGui.QMainWindow()
+    print  "*" * 10 + "Started MainWindow"
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
+    print  "*" * 10 + "Main Window Setup"
     populate_language_choicebox()
     ui.initAudio(None)
+    print  "*" * 10 + "Audio initiated"
     lessonpics = [f for f in os.listdir(currentpath) if os.path.isfile(os.path.join(currentpath,f))]
     print "lessonpics", lessonpics
     finished = []
+    print  "*" * 10 + "Created lists"
     nextpressed()
+    print  "*" * 10 + "Nextpressed()"
     MainWindow.show()
+    print  "*" * 10 + "Show MainWindow"
     text = str(ui.languagebox.currentText())
     ui.languagebox.activated.connect(plang)
     ui.recordbutton.clicked.connect(record2)

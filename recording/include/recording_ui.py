@@ -10,6 +10,7 @@
 from PySide import QtCore, QtGui, QtMultimedia
 import wave
 import json
+import sound_button_rc
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -259,7 +260,7 @@ class Ui_MainWindow(object):
         self.audio = QtMultimedia.QAudioInput(self.audiodevice, format)
         #self.audio.setNotifyInterval(self.notifyinterval * 1000)
         #self.audio.notify.connect(self.handleNotify)
-import sound_button_rc
+#import sound_button_rc
 
 if __name__ == "__main__":
     import sys
