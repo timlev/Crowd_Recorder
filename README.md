@@ -8,7 +8,7 @@ Requirements:
 Python 2.7
 PySide
 Qt4
-
+PIL (Python Imaging Library) for converting images to png
 
 Each folder inside "Lessons" must contain:
   1) picutre files named as the phrases you want to translate
