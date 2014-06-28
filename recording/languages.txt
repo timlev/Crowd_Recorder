@@ -4,3 +4,4 @@ Somali
 Karen
 Burmese
 Spanish
+English

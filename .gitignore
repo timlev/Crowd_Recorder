@@ -216,4 +216,6 @@ pip-log.txt
 
 
 #Custom
-Lessons/
+*.jp*
+*.png
+*.wav
